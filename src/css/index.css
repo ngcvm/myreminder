@@ -2,3 +2,7 @@
   max-height: 200px;
   overflow: auto;
 }
+
+.ReminderList li {
+  margin-bottom: 5px;
+}
