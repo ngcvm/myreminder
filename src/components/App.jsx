@@ -8,7 +8,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      text: ''
+      text: '',
+      dueDate: null,
     }
 
   }
@@ -16,21 +17,27 @@ class App extends Component {
   handleChange(value) {
     this.setState({
       text: value
-    })
+    });
+  }
+
+  handleDueDate(value) {
+    this.setState({
+      dueDate: value
+    });
   }
 
   renderReminders() {
     const { reminders } = this.props;
     return (
-      <ul className="list-group col-sm-4">
+      <ul className="list-group ReminderList">
         {
           reminders.map(reminder => {
             return (
               <li key={reminder.id} className='list-group-item'>
-                <div className='list-item'>{reminder.text} <Button className='list-item delete-button' onClick={() => this.deleteReminder(reminder.id)}>
-                  &#x2715;
-                </Button></div>
-
+                <span className='list-item'>{reminder.text}</span>
+                <button type="button" className="close list-item delete-button" aria-label="Close" onClick={() => this.deleteReminder(reminder.id)}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </li>
             )
           })
@@ -44,8 +51,7 @@ class App extends Component {
   }
 
   deleteReminder(id) {
-    console.log('delete Reminder in application', id);
-    console.log('this.props', this.props);
+    this.props.deleteReminder(id);
   }
 
   render() {
@@ -65,6 +71,14 @@ class App extends Component {
                   <InputGroupAddon addonType="append">
                     <Button color='success' onClick={() => this.addReminder()}>Let's Do It!</Button>
                   </InputGroupAddon>
+                </InputGroup>
+                <br/>
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>How About Due Date ?</InputGroupText>
+                  </InputGroupAddon>
+                  <Input placeholder="Due Date ???" value={this.state.dueDate} type='datetime-local' onChange={(e) => this.handleDueDate(e.target.value)} />
+
                 </InputGroup>
               </div>
               <br/>
