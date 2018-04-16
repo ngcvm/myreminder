@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.1.0",
     "jquery": "^3.3.1",
+    "moment": "^2.22.1",
     "node-sass-chokidar": "^1.2.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
@@ -19,5 +21,10 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.11",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.20.3"
   }
 }
